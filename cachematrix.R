@@ -1,3 +1,7 @@
+# Followed the example that was provided in the Assignment page
+#First function acutally returns 4 functions, and it also stores the Matrix and its inverse when the second function is called
+# Second function simply returns the Inverse , ( from the cache if it was there before, or else calculates if it's a new one)
+
 makeCacheMatrix <- function(x = matrix()) {
         mInv <- NULL
         set <- function(y) {
