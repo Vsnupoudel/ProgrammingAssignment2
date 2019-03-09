@@ -22,7 +22,7 @@ rankall <- function(outcome, num ="best") {
         orders<-tapply(data1[[column]], data1$State, order)
         data2<-  split(data1, data1$State) 
         #final result with ranks in a new complete dataset
-        dataset<-order_by_state(data2,orders)
+        dataset<-order_by_state(data2,orders,column)
         
         #in case of worst
         #gave up using vectorized for here.. using sqldf
@@ -33,14 +33,14 @@ rankall <- function(outcome, num ="best") {
            return(final)
 }
         #return only the asked rank 
-        else{ final<-dataset[which(dataset$rank==num),]
+        else{ final<-dataset[which(dataset$rank==num),c("Hospital.Name", "State")]
         return(final)}
         
 }
 
 #function2
 
-order_by_state<-function(data_in,orders){
+order_by_state<-function(data_in,orders,column){
     #set up an empty data frame
     f<-head(data1,0)
     f$rank<-numeric(0)
